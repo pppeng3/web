@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"web/config"
 
-	"github.com/pkg/errors"
-	"github.com/sirupsen/logrus"
+	"web/log"
+
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
@@ -34,7 +34,7 @@ func Instance() *gorm.DB {
 		},
 	})
 	if err != nil {
-		logrus.Error(errors.WithStack(err))
+		log.Fatal(err.Error())
 		panic(err)
 	}
 	return mysqlDB.Debug()

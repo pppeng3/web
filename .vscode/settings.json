@@ -1,0 +1,17 @@
+{
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "rm-3ns2i94jn18lo36kj.mysql.rds.aliyuncs.com",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "de",
+            "database": "derivmm",
+            "username": "derivmmowner",
+            "password": "utpdDE7pGT2mGd"
+        }
+    ]
+}

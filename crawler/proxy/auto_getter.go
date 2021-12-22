@@ -2,12 +2,12 @@ package proxy
 
 import (
 	"fmt"
-	"log"
 	"net"
 	"net/http"
 	"strconv"
 	"strings"
 	"time"
+	"web/log"
 
 	"github.com/antchfx/htmlquery"
 	"github.com/gocolly/colly/v2"
@@ -63,12 +63,12 @@ func (cl *CrawlerIP3366) CrawlProxy() []string {
 		fmt.Println("Visiting", r.URL)
 	})
 	c.OnError(func(_ *colly.Response, err error) {
-		log.Fatal(err)
+		log.Fatal(err.Error())
 	})
 	c.OnResponse(func(r *colly.Response) {
 		doc, err := htmlquery.Parse(strings.NewReader((string(r.Body))))
 		if err != nil {
-			log.Fatal(err)
+			log.Fatal(err.Error())
 		}
 		nodes := htmlquery.Find(doc, `//tbody/tr`)
 		for _, node := range nodes {

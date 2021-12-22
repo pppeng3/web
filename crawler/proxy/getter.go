@@ -2,7 +2,6 @@ package proxy
 
 import (
 	"io/ioutil"
-	"log"
 	"net/http"
 	"net/url"
 	"sync"
@@ -96,7 +95,6 @@ func (p *DefaultProxyGetter) CheckProxy(proxyAddr string) bool {
 	}
 	defer res.Body.Close()
 	if res.StatusCode != http.StatusOK {
-		log.Println(err)
 		return false
 	}
 	c, _ := ioutil.ReadAll(res.Body)

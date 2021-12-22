@@ -3,9 +3,9 @@ package redis
 import (
 	"web/config"
 
+	"web/log"
+
 	"github.com/go-redis/redis"
-	"github.com/pkg/errors"
-	"github.com/sirupsen/logrus"
 )
 
 var (
@@ -23,7 +23,7 @@ func Instance(db int) *redis.Client {
 	})
 	_, err = redisClient.Ping().Result()
 	if err != nil {
-		logrus.Error(errors.WithStack(err))
+		log.Fatal(err.Error())
 		panic(err)
 	}
 	return redisClient
