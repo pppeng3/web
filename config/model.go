@@ -3,6 +3,7 @@ package config
 type Conf struct {
 	Mysql Mysql `json:"mysql"`
 	Redis Redis `json:"redis"`
+	Mongo Mongo `json:"mongo"`
 }
 
 type (
@@ -17,5 +18,10 @@ type (
 		Addr     string `json:"addr"`
 		DB       int    `json:"db"`
 		Password string `json:"password"`
+	}
+
+	Mongo struct {
+		Uri string `json:"uri"`
+		Db  string `json:"db"`
 	}
 )

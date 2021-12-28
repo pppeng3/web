@@ -7,7 +7,7 @@ import (
 )
 
 func Init() {
-	viper.AddConfigPath("../../conf")
+	viper.AddConfigPath("../conf")
 }
 
 func GetConfig() Conf {
