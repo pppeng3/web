@@ -4,12 +4,16 @@ go 1.17
 
 require (
 	github.com/antchfx/htmlquery v1.2.4
+	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/go-redis/redis v6.15.9+incompatible
 	github.com/gocolly/colly/v2 v2.1.0
 	github.com/patrickmn/go-cache v2.1.0+incompatible
+	github.com/segmentio/ksuid v1.0.4
 	github.com/shopspring/decimal v1.3.1
 	github.com/sirupsen/logrus v1.8.1
 	github.com/spf13/viper v1.9.0
+	github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common v1.0.322
+	github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/tiia v1.0.322
 	go.mongodb.org/mongo-driver v1.8.1
 	google.golang.org/grpc v1.40.0
 	google.golang.org/protobuf v1.27.1

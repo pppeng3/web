@@ -1,6 +1,6 @@
 syntax = "proto3";
 package base;
-option go_package = "../base";
+option go_package = "web/proto/base";
 
 message Base
 {

@@ -37,5 +37,6 @@ func Instance() *gorm.DB {
 		log.Fatal(err.Error())
 		panic(err)
 	}
+	// mysqlDB.AutoMigrate(&model.User{}, &model.Group{})
 	return mysqlDB.Debug()
 }

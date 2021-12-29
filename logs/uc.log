@@ -1,0 +1,15 @@
+[uc] 🎄 2021/12/29 20:15:33.131820 [client.go:16][INFO]start
+[uc] 🎄 2021/12/29 20:15:33.371190 [client.go:26][ERROR]error:rpc error: code = Unavailable desc = error reading from server: EOF
+[uc] 🎄 2021/12/29 20:19:12.456462 [client.go:16][INFO]start
+[uc] 🎄 2021/12/29 20:19:49.095771 [client.go:16][INFO]start
+[uc] 🎄 2021/12/29 20:20:14.440171 [client.go:16][INFO]start
+[uc] 🎄 2021/12/29 20:20:14.697326 [client.go:26][ERROR]error:rpc error: code = Internal desc = grpc: error while marshaling: proto: Marshal called with nil
+[uc] 🎄 2021/12/29 20:20:26.736196 [client.go:16][INFO]start
+[uc] 🎄 2021/12/29 20:20:26.947694 [user_center.go:162][ERROR]Account already exists: 549822881@qq.com
+[uc] 🎄 2021/12/29 20:20:27.107424 [client.go:26][ERROR]error:rpc error: code = Internal desc = grpc: error while marshaling: proto: Marshal called with nil
+[uc] 🎄 2021/12/29 20:23:15.250454 [client.go:16][INFO]start
+[uc] 🎄 2021/12/29 20:23:15.342662 [user_center.go:162][ERROR]Account already exists: 549822881@qq.com
+[uc] 🎄 2021/12/29 20:23:15.489780 [client.go:26][ERROR]error:rpc error: code = Internal desc = grpc: error while marshaling: proto: Marshal called with nil
+[uc] 🎄 2021/12/29 20:25:18.646551 [client.go:16][INFO]start
+[uc] 🎄 2021/12/29 20:25:18.647493 [client.go:26][ERROR]error:rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing dial tcp :9001: connect: connection refused"
+[uc] 🎄 2021/12/29 20:25:23.899157 [client.go:16][INFO]start

@@ -1,4 +1,4 @@
-package ucserver
+package main
 
 import (
 	"context"
