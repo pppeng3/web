@@ -47,3 +47,8 @@ func createToken(user model.User, timeLength int, key string) (tokenString strin
 func CreateAccessToken() {}
 
 func CreateRefreshToken() {}
+
+func ParseToken(token string, isRefresh bool) (jwtCustomClaims, error) {
+	// var key string
+	return jwtCustomClaims{}, nil
+}

@@ -39,8 +39,8 @@ func CheckPhone(phone string) error {
 func CheckAvatarUrl(avatarurl string) error {
 	if avatarurl != "" {
 		credential := common.NewCredential(
-			"AKIDvmU0VyPo5oSTO5ghhYHtPm0BHSZaPDh2", //SecretId
-			"02OrCUginrnbIpmfS8fDewFVdcXM2gCf",     //SecretKey
+			"", //SecretId
+			"", //SecretKey
 		)
 		cpf := profile.NewClientProfile()
 		cpf.HttpProfile.Endpoint = "tiia.tencentcloudapi.com"
