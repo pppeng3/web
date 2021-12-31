@@ -2,8 +2,8 @@ package main
 
 import (
 	"context"
-	"log"
 	"net"
+	"web/log"
 
 	huc "web/handler/user_center"
 	user_center "web/proto/user-center"
@@ -69,12 +69,14 @@ func (s UserCenterServer) ExitGroup(ctx context.Context, req *user_center.ExitGr
 }
 
 func main() {
+	log.Init("/Users/pengdarong/Desktop/Personal/web/logs", "uc", "[uc] 🎄 ", "info")
+	log.Info(`Server Start`)
 	server := grpc.NewServer()
 	user_center.RegisterUserCenterServer(server, &UserCenterServer{})
 
 	lis, err := net.Listen("tcp", ":"+PORT)
 	if err != nil {
-		log.Fatalf(`net listen error: %v`, err)
+		log.Fatal(`net listen error: %v`, err)
 	}
 
 	server.Serve(lis)

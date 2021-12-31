@@ -13,5 +13,5 @@ type User struct {
 	Fans              []int32 `gorm:"column:fans;type:text" json:"fans"`
 	PersonalSignature string  `gorm:"column:personal_signature;type:varchar(32)" json:"personal_signature"`
 	Auth              []int32 `gorm:"column:auth;type:text"`
-	LoginAt           int64   `gorm:"column:updated_at;type:int(10) unsigned;not null" json:"login_at"`
+	LoginAt           int64   `gorm:"column:login_at;type:int(10) unsigned;not null" json:"login_at"`
 }

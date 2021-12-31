@@ -3,14 +3,17 @@ package user_center
 import (
 	"context"
 	"crypto/md5"
-	"errors"
 	"fmt"
 	"time"
 	"web/db/model"
 	"web/db/mysql"
 	"web/log"
+	"web/proto/base"
 	user_center "web/proto/user-center"
+	"web/service"
 	"web/utils/helper"
+
+	"github.com/pkg/errors"
 
 	"github.com/segmentio/ksuid"
 	"gorm.io/gorm"
@@ -22,7 +25,7 @@ var (
 
 func init() {
 	db = mysql.Instance()
-	log.Init("/Users/pengdarong/Desktop/Personal/web/logs", "uc", "[uc] 🎄 ", "info")
+	// log.Init("/Users/pengdarong/Desktop/Personal/web/logs", "uc", "[uc] 🎄 ", "info")
 }
 
 func Register(ctx context.Context, req *user_center.RegisterRequest) (resp *user_center.RegisterResponse, err error) {
@@ -55,11 +58,52 @@ func Follow(ctx context.Context, req *user_center.FollowRequest) (resp *user_cen
 }
 
 func CheckToken(ctx context.Context, req *user_center.CheckTokenRequest) (resp *user_center.CheckTokenResponse, err error) {
-	return nil, nil
+	claims, err := service.ParseToken(req.Token, req.GetIsRefresh())
+	if err != nil {
+		log.Error(`Parse Token Error: %v`, err)
+		return
+	}
+	log.Info(`%s access`, claims.Nickname)
+	resp = &user_center.CheckTokenResponse{
+		BaseResp: &base.BaseResp{StatusCode: 0},
+	}
+	err = claims.Valid()
+	if err != nil {
+		log.Error(`Claims Failed: %v`, err)
+		return
+	}
+	return
 }
 
 func RefreshToken(ctx context.Context, req *user_center.RefreshTokenRequest) (resp *user_center.RefreshTokenResponse, err error) {
-	return nil, nil
+	claims, err := service.ParseToken(req.RefreshToken, true)
+	if err != nil {
+		log.Error(`Parse Token Failed: %s, err: %v`, req.RefreshToken, err)
+		return
+	}
+	log.Info(`%s refresh`, claims.Nickname)
+	user, err := getUserById(ctx, claims.UserId)
+	if err != nil {
+		log.Error(`Could Not Find User: %s, err: %v`, claims.UserId, err)
+		return
+	}
+	accessToken, accessExp, err := service.CreateAccessToken(user)
+	if err != nil {
+		log.Error(`Create AccessToken Error: %v`, err)
+		return nil, errors.Errorf(`Create AccessToken Error: %v`, err)
+	}
+	refreshToken, refreshExp, err := service.CreateRefreshToken(user)
+	if err != nil {
+		log.Error(`Create RefreshToken Error: %v`, err)
+		return nil, errors.Errorf(`Create RefreshToken Error: %v`, err)
+	}
+	resp = &user_center.RefreshTokenResponse{
+		AccessToken:  accessToken,
+		RefreshToken: refreshToken,
+		AccessExp:    accessExp,
+		RefreshExp:   refreshExp,
+	}
+	return
 }
 
 func ModifyUserInfo(ctx context.Context, req *user_center.ModifyUserInfoRequest) (resp *user_center.ModifyUserInfoResponse, err error) {
@@ -106,7 +150,8 @@ func registerWithPhone(ctx context.Context, phone, password, verify string) (res
 		return nil, err
 	}
 	resp = &user_center.RegisterResponse{
-		UserId: uid,
+		UserId:   uid,
+		BaseResp: &base.BaseResp{StatusCode: 0},
 	}
 	return resp, nil
 }
@@ -124,7 +169,8 @@ func registerWithEmail(ctx context.Context, email, password, verify string) (res
 		return nil, err
 	}
 	resp = &user_center.RegisterResponse{
-		UserId: uid,
+		UserId:   uid,
+		BaseResp: &base.BaseResp{StatusCode: 0},
 	}
 	return resp, nil
 }
@@ -199,7 +245,7 @@ func loginWithPhone(ctx context.Context, phone, password string) (resp *user_cen
 	if user.Password != fmt.Sprintf("%x", md5.Sum([]byte(password))) {
 		return nil, errors.New("Account Or Password Wrong")
 	}
-	return nil, nil
+	return login(ctx, user)
 }
 
 func loginWithEmail(ctx context.Context, email, password string) (resp *user_center.LoginResponse, err error) {
@@ -212,7 +258,7 @@ func loginWithEmail(ctx context.Context, email, password string) (resp *user_cen
 	if user.Password != fmt.Sprintf("%x", md5.Sum([]byte(password))) {
 		return nil, errors.New("Account Or Password Wrong")
 	}
-	return nil, nil
+	return login(ctx, user)
 }
 
 func loginWithWechat(ctx context.Context, wechat, password string) (resp *user_center.LoginResponse, err error) {
@@ -225,13 +271,45 @@ func loginWithWechat(ctx context.Context, wechat, password string) (resp *user_c
 	if user.Password != fmt.Sprintf("%x", md5.Sum([]byte(password))) {
 		return nil, errors.New("Account Or Password Wrong")
 	}
-	return nil, nil
+	return login(ctx, user)
 }
 
-func login() {}
+func login(ctx context.Context, user model.User) (resp *user_center.LoginResponse, err error) {
+	accessToken, accessExp, err := service.CreateAccessToken(user)
+	if err != nil {
+		return nil, errors.Errorf("Create Access Token Failed: %v", err)
+	}
+	refreshToken, refreshExp, err := service.CreateRefreshToken(user)
+	if err != nil {
+		return nil, errors.Errorf("Create Refresh Token Failed: %v", err)
+	}
+
+	// 更新登陆时间
+	if err := db.Table("user").Where("user_id = ?", user.UserId).Updates(map[string]interface{}{
+		"login_at": time.Now().Unix(),
+	}).Error; err != nil {
+		log.Error(`Update LoginTime Failed: %v`, err)
+		return nil, err
+	}
+	resp = &user_center.LoginResponse{
+		AccessToken:  accessToken,
+		AccessExp:    accessExp,
+		RefreshToken: refreshToken,
+		RefreshExp:   refreshExp,
+		UserId:       user.UserId,
+		BaseResp:     &base.BaseResp{StatusCode: 0},
+	}
+	return
+}
 
 func getUser(ctx context.Context, user model.User) (res model.User, err error) {
 	db := db.WithContext(ctx)
 	err = db.Model(&user).Where(&user).Take(&res).Error
+	return
+}
+
+func getUserById(ctx context.Context, id string) (res model.User, err error) {
+	db := db.WithContext(ctx)
+	err = db.Table("user").Where(model.User{UserId: id}).Take(&res).Error
 	return
 }

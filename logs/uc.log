@@ -1,15 +1,15 @@
-[uc] 🎄 2021/12/29 20:15:33.131820 [client.go:16][INFO]start
-[uc] 🎄 2021/12/29 20:15:33.371190 [client.go:26][ERROR]error:rpc error: code = Unavailable desc = error reading from server: EOF
-[uc] 🎄 2021/12/29 20:19:12.456462 [client.go:16][INFO]start
-[uc] 🎄 2021/12/29 20:19:49.095771 [client.go:16][INFO]start
-[uc] 🎄 2021/12/29 20:20:14.440171 [client.go:16][INFO]start
-[uc] 🎄 2021/12/29 20:20:14.697326 [client.go:26][ERROR]error:rpc error: code = Internal desc = grpc: error while marshaling: proto: Marshal called with nil
-[uc] 🎄 2021/12/29 20:20:26.736196 [client.go:16][INFO]start
-[uc] 🎄 2021/12/29 20:20:26.947694 [user_center.go:162][ERROR]Account already exists: 549822881@qq.com
-[uc] 🎄 2021/12/29 20:20:27.107424 [client.go:26][ERROR]error:rpc error: code = Internal desc = grpc: error while marshaling: proto: Marshal called with nil
-[uc] 🎄 2021/12/29 20:23:15.250454 [client.go:16][INFO]start
-[uc] 🎄 2021/12/29 20:23:15.342662 [user_center.go:162][ERROR]Account already exists: 549822881@qq.com
-[uc] 🎄 2021/12/29 20:23:15.489780 [client.go:26][ERROR]error:rpc error: code = Internal desc = grpc: error while marshaling: proto: Marshal called with nil
-[uc] 🎄 2021/12/29 20:25:18.646551 [client.go:16][INFO]start
-[uc] 🎄 2021/12/29 20:25:18.647493 [client.go:26][ERROR]error:rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing dial tcp :9001: connect: connection refused"
-[uc] 🎄 2021/12/29 20:25:23.899157 [client.go:16][INFO]start
+[uc] 🎄 2021/12/30 11:24:48.896280 [server.go:73][INFO]Server Start
+[uc] 🎄 2021/12/30 11:25:09.742889 [client.go:16][INFO]Client Start
+[uc] 🎄 2021/12/30 11:26:54.930819 [client.go:16][INFO]Client Start
+[uc] 🎄 2021/12/30 11:26:55.022290 [user_center.go:170][ERROR]Account already exists: 549822881@qq.com
+[uc] 🎄 2021/12/30 11:28:03.005099 [client.go:16][INFO]Client Start
+[uc] 🎄 2021/12/30 11:28:03.095541 [user_center.go:170][ERROR]Account already exists: 549822881@qq.com
+[uc] 🎄 2021/12/30 12:12:46.377202 [server.go:73][INFO]Server Start
+[uc] 🎄 2021/12/30 12:12:48.221995 [client.go:16][INFO]Client Start
+[uc] 🎄 2021/12/30 12:12:48.477479 [user_center.go:215][ERROR]Account already exists: 549822881@qq.com
+[uc] 🎄 2021/12/30 12:12:48.608601 [user_center.go:291][ERROR]Update LoginTime Failed: Error 1054: Unknown column 'login_at' in 'field list'
+[uc] 🎄 2021/12/30 12:12:48.608777 [client.go:34][ERROR]error:rpc error: code = Unknown desc = Error 1054: Unknown column 'login_at' in 'field list'
+[uc] 🎄 2021/12/30 12:13:48.645134 [server.go:73][INFO]Server Start
+[uc] 🎄 2021/12/30 12:13:50.314179 [client.go:16][INFO]Client Start
+[uc] 🎄 2021/12/30 12:15:29.755924 [client.go:16][INFO]Client Start
+[uc] 🎄 2021/12/30 12:15:29.853908 [user_center.go:215][ERROR]Account already exists: 549822881@qq.com

@@ -61,7 +61,7 @@ message LoginResponse
     string refresh_token = 2;
     int64 access_exp = 3;
     int64 refresh_exp = 4;
-    uint32 user_id = 5;
+    string user_id = 5;
 
     base.BaseResp base_resp = 255;
 }

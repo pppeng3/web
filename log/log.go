@@ -65,6 +65,8 @@ func Init(fileDir, fileName, prefix, level string) error {
 		f.logLevel = ERROR
 	case `FATAL`:
 		f.logLevel = FATAL
+	default:
+		f.logLevel = DEBUG
 	}
 
 	t, _ := time.Parse(DATE_FORMAT, time.Now().Format(DATE_FORMAT))
