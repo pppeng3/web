@@ -13,3 +13,27 @@
 [uc] 🎄 2021/12/30 12:13:50.314179 [client.go:16][INFO]Client Start
 [uc] 🎄 2021/12/30 12:15:29.755924 [client.go:16][INFO]Client Start
 [uc] 🎄 2021/12/30 12:15:29.853908 [user_center.go:215][ERROR]Account already exists: 549822881@qq.com
+[uc] 🎄 2022/01/02 19:52:48.444520 [server.go:73][INFO]Server Start
+[uc] 🎄 2022/01/02 19:53:02.783038 [client.go:16][INFO]Client Start
+[uc] 🎄 2022/01/02 19:53:03.360289 [user_center.go:215][ERROR]Account already exists: 549822881@qq.com
+[uc] 🎄 2022/01/02 19:53:03.765500 [jwt.go:95][WARN]Parse Token Error: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDExMjQ0ODMsImlzcyI6InVzZXJfY2VudGVyIiwidXNlcl9pZCI6IjIyelBxRXNYeXVpN0FKdUNQaVJRaUVIRHM5cCIsInNleCI6MCwibmlja25hbWUiOiIiLCJlbWFpbCI6IjU0OTgyMjg4MUBxcS5jb20iLCJwaG9uZSI6IiIsIndlY2hhdCI6IiIsImF2YXRhcl91cmwiOiIiLCJwZXJzb25hbF9zaWduYXR1cmUiOiIifQ.LTPJ_NNJgfvIAJeNLIx3xAvz4eAiW8uNmonsnOYKzXg
+[uc] 🎄 2022/01/02 19:53:03.765631 [user_center.go:63][ERROR]Parse Token Error: signature is invalid
+[uc] 🎄 2022/01/02 19:53:03.765997 [client.go:40][ERROR]error:rpc error: code = Unknown desc = signature is invalid
+[uc] 🎄 2022/01/02 19:53:03.766622 [user_center.go:84][INFO] refresh
+[uc] 🎄 2022/01/02 19:59:58.090575 [client.go:16][INFO]Client Start
+[uc] 🎄 2022/01/02 19:59:58.321417 [user_center.go:215][ERROR]Account already exists: 549822881@qq.com
+[uc] 🎄 2022/01/02 19:59:58.757268 [user_center.go:66][INFO] access
+[uc] 🎄 2022/01/02 19:59:58.758459 [user_center.go:84][INFO] refresh
+[uc] 🎄 2022/01/02 20:28:23.552022 [server.go:73][INFO]Server Start
+[uc] 🎄 2022/01/02 20:28:26.011634 [client.go:17][INFO]Client Start
+[uc] 🎄 2022/01/02 20:28:26.559314 [user_center.go:231][ERROR]Account already exists: 549822881@qq.com
+[uc] 🎄 2022/01/02 20:28:26.952327 [user_center.go:66][INFO] access
+[uc] 🎄 2022/01/02 20:28:26.953158 [user_center.go:84][INFO] refresh
+[uc] 🎄 2022/01/02 20:28:27.123656 [user_center.go:120][ERROR]Modify userInfo error:WHERE conditions required
+[uc] 🎄 2022/01/02 20:28:27.123742 [client.go:63][ERROR]error:rpc error: code = Unknown desc = WHERE conditions required
+[uc] 🎄 2022/01/02 20:29:51.730667 [client.go:17][INFO]Client Start
+[uc] 🎄 2022/01/02 20:29:51.954391 [user_center.go:231][ERROR]Account already exists: 549822881@qq.com
+[uc] 🎄 2022/01/02 20:29:52.330409 [user_center.go:66][INFO] access
+[uc] 🎄 2022/01/02 20:29:52.331457 [user_center.go:84][INFO] refresh
+[uc] 🎄 2022/01/02 20:29:52.513680 [user_center.go:120][ERROR]Modify userInfo error:WHERE conditions required
+[uc] 🎄 2022/01/02 20:29:52.513865 [client.go:64][ERROR]error:rpc error: code = Unknown desc = WHERE conditions required

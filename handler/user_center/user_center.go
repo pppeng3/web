@@ -102,15 +102,48 @@ func RefreshToken(ctx context.Context, req *user_center.RefreshTokenRequest) (re
 		RefreshToken: refreshToken,
 		AccessExp:    accessExp,
 		RefreshExp:   refreshExp,
+		BaseResp: &base.BaseResp{StatusCode: 0},
 	}
 	return
 }
 
 func ModifyUserInfo(ctx context.Context, req *user_center.ModifyUserInfoRequest) (resp *user_center.ModifyUserInfoResponse, err error) {
+	if err = db.WithContext(ctx).Table("user").Updates(map[string]interface{}{
+		"sex": 					req.UserInfo.Sex,
+		"nickname": 			req.UserInfo.Nickname,
+		"email": 				req.UserInfo.Email,
+		"phone": 				req.UserInfo.Phone,
+		"wechat": 				req.UserInfo.Wechat,
+		"avatar_url": 			req.UserInfo.AvatarUrl,
+		"personal_signature": 	req.UserInfo.PersonalSignature,
+	}).Error; err != nil {
+		log.Error(`Modify userInfo error:%v`, err)
+		return
+	}
+	
+	resp = &user_center.ModifyUserInfoResponse{
+		BaseResp: &base.BaseResp{StatusCode: 0},
+	}
+
 	return nil, nil
 }
 
 func ModifyPassword(ctx context.Context, req *user_center.ModifyPasswordRequest) (resp *user_center.ModifyPasswordResponse, err error) {
+	user, err := getUserById(ctx, req.user_id)
+	if err != nil {
+		log.Error(`Could not find user by userid:%s`, req.user_id)
+		return
+	}
+
+	if user.Password != fmt.Sprintf("%x", md5.Sum([]byte(req.old_password))) {
+		return nil, errors.New("OldPassword is Wrong")
+	}
+	newPassord := fmt.Sprintf("%x", md5.Sum([]byte(req.new_password)))
+	if err = db.WithContext(ctx).Model(&user).Update("password", fmt.Sprintf("%x", newPassord).Error; err != nil {
+		log.Error(`Modify password error:%v`, err)
+		return
+	}
+	resp := 
 	return nil, nil
 }
 
