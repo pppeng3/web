@@ -19,6 +19,7 @@ require (
 	google.golang.org/protobuf v1.27.1
 	gorm.io/driver/mysql v1.2.1
 	gorm.io/gorm v1.22.4
+	github.com/pppeng3/ccexgo v0.5.4-pre
 )
 
 require (

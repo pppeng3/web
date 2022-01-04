@@ -153,7 +153,8 @@ message UserInfo_
 
 message ModifyUserInfoRequest
 {
-    UserInfo_ user_info = 1;
+    string user_id = 1;
+    UserInfo_ user_info = 2;
 
     base.Base base = 255;
 }
