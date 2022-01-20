@@ -143,8 +143,10 @@ func ModifyPassword(ctx context.Context, req *user_center.ModifyPasswordRequest)
 		log.Error(`Modify password error:%v`, err)
 		return
 	}
-	resp := 
-	return nil, nil
+	resp = &user_center.ModifyPasswordRespBaseResp: {
+		BaseResp: &base.BaseResp{Statuscode: 0}
+	}
+	return resp, nil
 }
 
 func GetUserInfo(ctx context.Context, req *user_center.GetUserInfoRequest) (resp *user_center.GetUserInfoResponse, err error) {
